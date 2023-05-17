@@ -1,0 +1,231 @@
+<html>
+    <!--head tag-->
+  <head>
+    <title>LocalStroage and SessionStorage Example;</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="Stylesheet" href="Styles.css">
+    
+    <!--Script Action-->
+    <script>
+    
+       //function pizza incremant
+        function clickcounter()
+        {
+           if (typeof(Storage) !== "undefined") 
+         {
+           if (localStorage.clickcount) 
+           {
+            localStorage.clickcount = Number(localStorage.clickcount)+1;
+            pizza_val();
+           } 
+           else 
+           {
+            localStorage.clickcount = 1;
+            pizza_val();
+           }
+           document.getElementById("respiz").innerHTML =localStorage.clickcount ;
+         } 
+         else 
+         {
+         document.getElementById("respiz").innerHTML = 0;
+         }
+        }
+   
+        //fucntion pizza decrement
+        function clickcounter1()
+        {
+           if (typeof(Storage) !== "undefined" && localStorage.clickcount>0) 
+         {
+           if (localStorage.clickcount) 
+           {
+            localStorage.clickcount = Number(localStorage.clickcount)-1;
+            pizza_val();
+           } 
+           else 
+           {
+            localStorage.clickcount = 1;
+            pizza_val();
+           }
+           document.getElementById("respiz").innerHTML =localStorage.clickcount ;
+         } 
+         else 
+         {
+         document.getElementById("respiz").innerHTML = 0;
+         }
+       }
+
+       //fucntion burger session increment
+       function clickcounter2()
+        {
+            if (typeof(Storage) !== "undefined") 
+            {
+             if (sessionStorage.clickcount) 
+             {
+                sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
+                burger_val();
+             } 
+             else 
+             {
+              sessionStorage.clickcount = 1;
+              burger_val();
+             }
+            document.getElementById("sesresbur").innerHTML = sessionStorage.clickcount ;
+           } 
+           else 
+           {
+             document.getElementById("sesresbur").innerHTML = 0;
+           }
+
+        }
+       //fucntion burger session decrement
+       function clickcounter3()
+        {
+           if (typeof(Storage) !== "undefined" && sessionStorage.clickcount>0) 
+         {
+           if (sessionStorage.clickcount) 
+           {
+            sessionStorage.clickcount = Number(sessionStorage.clickcount)-1;
+            burger_val();
+           } 
+           else 
+           {
+            sessionStorage.clickcount = 1;
+            burger_val();
+           }
+           document.getElementById("sesresbur").innerHTML =sessionStorage.clickcount ;
+         } 
+         else 
+         {
+         document.getElementById("sesresbur").innerHTML = 0;
+         }
+        }
+        //function pizzaprice
+       var pizza_value=0;
+       function pizza_val()
+       {
+        if (localStorage.clickcount>0)
+           {
+            pizza_value=localStorage.clickcount*10; 
+           
+            document.getElementById("respizzaval").innerHTML = pizza_value ;
+           } 
+           else 
+           {
+             document.getElementById("respizzaval").innerHTML = 0;
+           }
+       }
+
+       //function burger total
+       var burger_value=0;
+       function burger_val()
+       {
+        if (sessionStorage.clickcount>0)
+           {
+            burger_value=sessionStorage.clickcount*8.5; 
+           
+            document.getElementById("resburgval").innerHTML = burger_value ;
+           } 
+           else 
+           {
+             document.getElementById("resburgval").innerHTML = 0;
+           }
+       }
+
+      var total_value=0;
+      function total_val()
+      {
+           if(localStorage.clickcount==0 && sessionStorage.clickcount==0)
+           total_value=0;
+           else if(localStorage.clickcount>0 && sessionStorage.clickcount==0)
+           total_value=pizza_value;
+           else if(sessionStorage.clickcount>0 && localStorage.clickcount==0)
+           total_value=burger_value;
+           else
+           total_value=pizza_value+burger_value;
+           document.getElementById("restotval").innerHTML=total_value;
+      }
+
+     
+       
+
+   </script>
+    
+  </head>
+
+ <body>
+
+  <h1 id="heading">Food Choices Restaurant</h1>
+  
+  <!--Start of div-1-->
+  <div class="div-1">
+  
+    <pre class="para">
+    This is the best Restaurant in the town currently and we have good number of customer 
+    visiting every day.when comes to the history we have started in the year 1992, we have
+    nearly 3o years of experience in this industry. We basically started this Restaurant 
+    in order to meet the demand of the food growth in the city of different tastes. 
+  
+   </pre>
+  
+  </div>
+  <!--End of div-1-->
+  
+  <!--Start of div-2-->
+  <div class="div-2">
+   
+    <h2 id="Pro"> OUR MENU </h2>
+   
+    <div class="menu_container">
+     
+     <div class="menu">
+        <div class="menu_img">
+         <img src="pizza.jpg">
+       </div> 
+
+       <div class="pizza_cont">
+        
+        <pre>No of pizzas you want</pre>
+        <button onclick="clickcounter()"> + </button>
+        <span id="respiz"></span>
+        <button onclick="clickcounter1()"> - </button>
+
+        </div>
+
+     </div><br> 
+    
+     <br>
+     
+     <div class="menu">
+        <div class="menu_img">
+            <img src="burger.jpeg">
+         </div>
+
+         <div class="burger_cont">
+            <pre>No of burgers you want</pre>
+            <button onclick="clickcounter2()"> + </button>
+            <span id="sesresbur"></span>
+            <button onclick="clickcounter3()"> - </button>
+        </div>
+    
+     </div>
+   
+     <br>
+
+    </div>
+   
+  </div>
+  <!--End of div-2-->
+  
+  <div class="div-3">
+    <Pre>Note:-The price of a pizza is $10 and burger is $8.5</Pre>
+    <p>The value of the pizza's you ordered is $<span id="respizzaval"></span></p>
+    <p>The value of the burger's you ordered is $<span id="resburgval"></span></p>
+    <p>The total value of your purchase is $<span id="restotval"></span>    <button onclick="total_val()">Press here to get Total</button></p>
+
+
+  </div>
+ 
+  
+ </body>
+
+</html>
